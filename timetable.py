@@ -1,21 +1,22 @@
+#importing required packages
 import numpy as np
 import random as rd
 
-
+#declaring required arrays
 entered_sub = []
 arr = np.zeros((5,5))
 arr = arr.astype(np.object)
 
-
+#declaring dictionary containg the subject names
 sub_dict = {1 : 'pps', 2 : 'phy', 3 : 'bee', 4 : 'sme', 5: 'M1'}
 sub_dict_keys = list(sub_dict.keys())
 
 
+#array  containing teacher names
+main_teachers = ['A','B','C','D','E']
+substitute_teachers = ['a','b','c','d','e']
 
-mt = ['A','B','C','D','E']
-st = ['a','b','c','d','e']
-
-
+#function which randomizes the keys in the subject dicitionary
 def r_list_generator(sub_dict_keys,entered_sub):
 	while(len(entered_sub) <= 4):
 		temp = rd.choice(sub_dict_keys)
@@ -28,10 +29,10 @@ def r_list_generator(sub_dict_keys,entered_sub):
 
 
 entered_sub = r_list_generator(sub_dict_keys,entered_sub)
-print(entered_sub)
 
 
 
+#assigning the subjects to the array cells
 for i in range(5):
 	m,n = i,i
 	for j in range(5):
