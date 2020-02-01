@@ -83,7 +83,7 @@ def dataframe_generator():
 	df = pd.read_csv("database1.csv" , header = None)
 	df.columns = headers
 	
-	print(df)
+	return df
 
 		
 
@@ -113,7 +113,7 @@ csv_converter(arr)
 
 
 #calling the dataframe_generator function
-dataframe_generator()
+df = dataframe_generator()
 
-#print(arr)
 
+print(df)
