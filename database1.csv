@@ -1,5 +1,5 @@
-bee,sme,phy,M1,pps
-pps,bee,sme,phy,M1
-M1,pps,bee,sme,phy
-phy,M1,pps,bee,sme
-sme,phy,M1,pps,bee
+phy,pps,bee,sme,M1
+M1,phy,pps,bee,sme
+sme,M1,phy,pps,bee
+bee,sme,M1,phy,pps
+pps,bee,sme,M1,phy

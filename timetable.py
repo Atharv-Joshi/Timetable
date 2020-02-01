@@ -13,7 +13,7 @@ filename = 'database1.csv'
 entered_sub = []
 arr = np.zeros((row_dimensions,column_dimensions))
 arr = arr.astype(np.object)
-headers = ['hour1','hour2','hour3','hour4','hour5']
+headers = ['8:50-9:50','9:50-10:50','10:50-11:50','11:50-12:50','12:50-1:50']
 
 #declaring dictionary containg the subject names
 sub_dict = {1 : 'pps', 2 : 'phy', 3 : 'bee', 4 : 'sme', 5: 'M1'}
@@ -67,7 +67,7 @@ def subject_assigner(sub_dict,entered_sub,arr):
 				arr[i,j] = sub_dict[entered_sub[1]]	
 	return arr
 
-
+#converts the database which is of array type into a .csv type file
 def csv_converter(arr):
 	
 	with open(filename,"w") as object:
@@ -81,13 +81,12 @@ def csv_converter(arr):
 				object.write(data)
 			object.write("\n")
 
-	 
+#generates a dataframe using the .csv type file 
 def dataframe_generator():
 	df = pd.read_csv("database1.csv" , header = None)
 	df.columns = headers
 	
 	return df
-
 		
 
 
