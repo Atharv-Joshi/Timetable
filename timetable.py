@@ -13,7 +13,7 @@ filename = 'database1.csv'
 entered_sub = []
 arr = np.zeros((row_dimensions,column_dimensions))
 arr = arr.astype(np.object)
-headers = ['hour1','hour2','hour3','hour4','hour5','hour6']
+headers = ['hour1','hour2','hour3','hour4','hour5']
 
 #declaring dictionary containg the subject names
 sub_dict = {1 : 'pps', 2 : 'phy', 3 : 'bee', 4 : 'sme', 5: 'M1'}
@@ -74,11 +74,14 @@ def csv_converter(arr):
 		for i in range(row_dimensions):
 			arr_temp = arr[i]
 			for j in range(column_dimensions):
-				data = arr_temp[j]+','
+				data = arr_temp[j]
+				if j < (column_dimensions-1):
+					data += ','
+					
 				object.write(data)
 			object.write("\n")
 
-	
+	 
 def dataframe_generator():
 	df = pd.read_csv("database1.csv" , header = None)
 	df.columns = headers
