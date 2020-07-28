@@ -15,29 +15,30 @@ arr = np.zeros((row_dimensions,column_dimensions))
 arr = arr.astype(np.object)
 headers = ['8:50-9:50','9:50-10:50','10:50-11:50','11:50-12:50','12:50-1:50']
 
-#declaring dictionary containg the subject names
+#declaring dictionary containing the subject names
 sub_dict = {1 : 'pps', 2 : 'phy', 3 : 'bee', 4 : 'sme', 5: 'M1'}
 sub_dict_keys = list(sub_dict.keys())
 
 
-#array  containing teacher names
-main_teachers = ['A','B','C','D','E']
-substitute_teachers = ['a','b','c','d','e']
+#dictionary  containing teacher names
+teachers = {'pps':['A','a'],'phy':['B','b'],"bee":['C','c'],'sme':['D','d'],'M1':['E','e']}
+
 
 
 #function which randomizes the keys in the subject dicitionary
 def r_list_generator(sub_dict_keys,entered_sub):
 	while(len(entered_sub) <= 4):
 		temp = rd.choice(sub_dict_keys)
-		if temp in entered_sub:
-			pass
-		else:
+		if temp not in entered_sub:
 			entered_sub.append(temp)
-	return(entered_sub)
+		return(entered_sub)
+		
+
 
 
 #assigning the subjects to the array cells
 def subject_assigner(sub_dict,entered_sub,arr):
+
 	for i in range(row_dimensions):
 		m,n = i,i
 		for j in range(column_dimensions):
@@ -46,6 +47,7 @@ def subject_assigner(sub_dict,entered_sub,arr):
 
 			if ( j == n):
 				arr[i,j] = sub_dict[entered_sub[0]]
+
 			if (j == n+1):
 				arr[i,j] = sub_dict[entered_sub[1]]
 			if (j == n+2):
@@ -67,6 +69,7 @@ def subject_assigner(sub_dict,entered_sub,arr):
 				arr[i,j] = sub_dict[entered_sub[1]]	
 	return arr
 
+
 #converts the database which is of array type into a .csv type file
 def csv_converter(arr):
 	
@@ -81,10 +84,12 @@ def csv_converter(arr):
 				object.write(data)
 			object.write("\n")
 
+
 #generates a dataframe using the .csv type file 
 def dataframe_generator():
 	df = pd.read_csv("database1.csv" , header = None)
 	df.columns = headers
+
 	
 	return df
 		
