@@ -18,6 +18,7 @@ headers = ['8:50-9:50','9:50-10:50','10:50-11:50','11:50-12:50','12:50-1:50']
 #declaring dictionary containing the subject names
 sub_dict = {1 : 'pps', 2 : 'phy', 3 : 'bee', 4 : 'sme', 5: 'M1'}
 sub_dict_keys = list(sub_dict.keys())
+sub_dict_values = list(sub_dict.values())
 
 
 #dictionary  containing teacher names
@@ -26,18 +27,19 @@ teachers = {'pps':['A','a'],'phy':['B','b'],"bee":['C','c'],'sme':['D','d'],'M1'
 
 
 #function which randomizes the keys in the subject dicitionary
-def r_list_generator(sub_dict_keys,entered_sub):
+def r_list_generator(sub_dict_values,entered_sub):
 	while(len(entered_sub) <= 4):
-		temp = rd.choice(sub_dict_keys)
+		temp = rd.choice(sub_dict_values)
 		if temp not in entered_sub:
 			entered_sub.append(temp)
-		return(entered_sub)
+	return(entered_sub)
+
 		
 
 
 
 #assigning the subjects to the array cells
-def subject_assigner(sub_dict,entered_sub,arr):
+def subject_assigner(entered_sub,arr):
 
 	for i in range(row_dimensions):
 		m,n = i,i
@@ -46,27 +48,27 @@ def subject_assigner(sub_dict,entered_sub,arr):
 		#assiging subs to right side of the diagonal
 
 			if ( j == n):
-				arr[i,j] = sub_dict[entered_sub[0]]
+				arr[i,j] = entered_sub[0]
 
-			if (j == n+1):
-				arr[i,j] = sub_dict[entered_sub[1]]
-			if (j == n+2):
-				arr[i,j] = sub_dict[entered_sub[2]]	
-			if (j == n+3):
-				arr[i,j] = sub_dict[entered_sub[3]]
-			if (j == n+4):
-				arr[i,j] = sub_dict[entered_sub[4]]		
+			elif (j == n+1):
+				arr[i,j] = entered_sub[1]
+			elif (j == n+2):
+				arr[i,j] = entered_sub[2]	
+			elif (j == n+3):
+				arr[i,j] = entered_sub[3]
+			elif (j == n+4):
+				arr[i,j] = entered_sub[4]		
 
 		#assigning subs to left side of the diagonal
 
-			if (j == n-1):
-				arr[i,j] = sub_dict[entered_sub[4]]
-			if (j == n-2):
-				arr[i,j] = sub_dict[entered_sub[3]]
-			if (j == n-3):
-				arr[i,j] = sub_dict[entered_sub[2]]			
-			if (j == n-4):
-				arr[i,j] = sub_dict[entered_sub[1]]	
+			elif (j == n-1):
+				arr[i,j] = entered_sub[4]
+			elif (j == n-2):
+				arr[i,j] = entered_sub[3]
+			elif (j == n-3):
+				arr[i,j] = entered_sub[2]			
+			elif (j == n-4):
+				arr[i,j] = entered_sub[1]	
 	return arr
 
 
@@ -108,11 +110,11 @@ def dataframe_generator():
 
 
 #calling the r_list_generator() function
-entered_sub = r_list_generator(sub_dict_keys,entered_sub)
+entered_sub = r_list_generator(sub_dict_values,entered_sub)
 
 
 #calling the subject_assigner() function
-arr = subject_assigner(sub_dict,entered_sub,arr)
+arr = subject_assigner(entered_sub,arr)
 
 
 #calling the csv_converter function
