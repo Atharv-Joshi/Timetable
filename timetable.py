@@ -2,6 +2,7 @@
 import numpy as np
 import random as rd
 import pandas as pd
+import streamlit as st
 
 
 #declaring the required variables
@@ -125,4 +126,4 @@ csv_converter(arr)
 df = dataframe_generator()
 
 
-print(df)
+st.write(df)
